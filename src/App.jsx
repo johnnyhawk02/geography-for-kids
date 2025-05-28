@@ -3,6 +3,7 @@ import Homepage from './components/Homepage';
 import Quiz from './components/Quiz';
 import Results from './components/Results';
 import Facts from './components/Facts';
+import './index.css';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
@@ -30,8 +31,8 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 pb-12 overflow-x-hidden">
+      <div className="container mx-auto px-2 sm:px-4 py-4 sm:py-8 mb-12">
         {currentView === 'home' && (
           <Homepage onStartQuiz={startQuiz} onShowFacts={showFacts} />
         )}

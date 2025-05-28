@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { getCategories } from '../data/questions.js';
+import AppTitle from './AppTitle';
 
 const Homepage = ({ onStartQuiz, onShowFacts }) => {
+  // Scroll to top when component mounts to ensure full visibility
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const categories = getCategories();
   return (
-    <div className="max-w-4xl mx-auto text-center">
-      <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
+    <div className="max-w-4xl mx-auto text-center pb-16 px-3">
+      <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 md:p-12 mb-16">
         <div className="mb-8">
-          <h1 className="text-5xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
-            🌍 Geography Wiz
-          </h1>
+          <AppTitle />
           <p className="text-xl md:text-2xl text-gray-600 mb-2">
             Welcome, young explorer!
           </p>
@@ -20,17 +23,17 @@ const Homepage = ({ onStartQuiz, onShowFacts }) => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 md:space-y-0 md:flex md:justify-center md:gap-4">
           <button
             onClick={onStartQuiz}
-            className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-all duration-200 w-full md:w-auto"
+            className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-lg sm:text-xl shadow-lg transform hover:scale-105 transition-all duration-200 w-full md:w-auto"
           >
             🎯 Start Quiz Adventure!
           </button>
           
           <button
             onClick={onShowFacts}
-            className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition-all duration-200 w-full md:w-auto ml-0 md:ml-4"
+            className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white font-bold py-3 sm:py-4 px-6 sm:px-8 rounded-full text-lg sm:text-xl shadow-lg transform hover:scale-105 transition-all duration-200 w-full md:w-auto"
           >
             🧠 Fun Geography Facts
           </button>
@@ -57,7 +60,7 @@ const Homepage = ({ onStartQuiz, onShowFacts }) => {
         </div>
 
         {/* Categories Preview */}
-        <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl">
+        <div className="mt-8 bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-2xl mb-10">
           <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">🗺️ What You'll Learn About</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
             {categories.slice(0, 8).map((category, index) => (
@@ -84,6 +87,7 @@ const Homepage = ({ onStartQuiz, onShowFacts }) => {
             ))}
           </div>
         </div>
+        <div className="py-8"></div> {/* Extra space at the bottom */}
       </div>
     </div>
   );
